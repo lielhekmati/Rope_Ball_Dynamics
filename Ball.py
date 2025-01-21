@@ -8,8 +8,29 @@ def momentum_calc(v1, m1, v2, m2):
 
 
 class Ball:
-    def __init__(self, radius, location, mass, velocity):
+    """
+    Represents a ball in the simulation.
 
+    Attributes:
+        x (float): The x-coordinate of the ball's position.
+        y (float): The y-coordinate of the ball's position.
+        vel_x (float): The x-component of the ball's velocity.
+        vel_y (float): The y-component of the ball's velocity.
+        a_x (float): The x-component of the ball's acceleration.
+        a_y (float): The y-component of the ball's acceleration.
+        radius (float): The radius of the ball.
+        mass (float): The mass of the ball.
+    """
+    def __init__(self, radius, location, mass, velocity):
+        """
+        Initializes a Ball instance.
+
+        Args:
+            radius (float): The radius of the ball.
+            location (tuple): The initial (x, y) position of the ball.
+            mass (float): The mass of the ball.
+            velocity (tuple): The initial (vel_x, vel_y) velocity of the ball.
+        """
         self.x = location[0]
         self.y = location[1]
 
@@ -43,7 +64,7 @@ class Ball:
         self.y = y
 
     def update_position(self, f_x=0, f_y=0, t=1/100):
-
+        """ Updates the ball's position based on applied forces and time step."""
         self.a_x = f_x / self.mass
         self.a_y = f_y / self.mass
 
@@ -54,7 +75,9 @@ class Ball:
         self.y += self.vel_y * t + 0.5 * self.a_y * t**2
 
     def collision(self, obj2):
+        """ Handles collisions with walls or another ball."""
         if isinstance(obj2, str):
+            # Handle ball-to-ball collisions
             if obj2 == 'x':
                 self.set_velocity(self.vel_x, -self.vel_y)
             elif obj2 == 'y':
@@ -67,10 +90,11 @@ class Ball:
             ux_1, ux_2 = momentum_calc(self.vel_x, self.mass, v2_x, mass2)
             uy_1, uy_2 = momentum_calc(self.vel_y, self.mass, v2_y, mass2)
 
-            self.set_velocity(ux_1, uy_1 * 0.999)
-            obj2.set_velocity(ux_2, uy_2 * 0.999)
+            self.set_velocity(ux_1, uy_1 * 0.95)
+            obj2.set_velocity(ux_2, uy_2 * 0.95)
 
     def check_collision_with_walls(self, upper, lower, left, right):
+        """ Checks and resolves collisions with the simulation boundaries."""
         x, y = self.get_position()
         r = self.get_radius()
 
@@ -90,6 +114,7 @@ class Ball:
             self.set_position(right - r, y)
 
     def check_collision_between_balls(self, ball2):
+        """ Checks and resolves collisions with another ball."""
         x1, y1 = self.get_position()
         x2, y2 = ball2.get_position()
         r1 = self.get_radius()
@@ -102,7 +127,9 @@ class Ball:
             #if not merged:
             #    self.collision(ball2)
             self.collision(ball2)
+
     def find_reposition_point(self, ball2):
+        """ Finds a new position for another ball to resolve overlap after a collision."""
         x1, y1 = self.get_position()
         x2, y2 = ball2.get_position()
         r1 = self.get_radius()
@@ -116,8 +143,7 @@ class Ball:
         return x, y
 
     def is_merged(self, ball):
-        return False
-
+        """ Determines if two balls have merged based on velocity and distance thresholds."""
         velocity_threshold = -1
         distance_threshold = 1
         v1_x, v1_y = self.get_velocity()
