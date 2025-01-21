@@ -15,10 +15,6 @@ def momentum_calc(v1, m1, v2, m2):
 def collision(obj1, obj2):
     v1_x, v1_y = obj1.get_velocity()
     mass1 = obj1.get_mass()
-    x1, y1 = ball1.get_position()
-    x2, y2 = ball2.get_position()
-    r1 = ball1.get_radius()
-    r2 = ball2.get_radius()
     if isinstance(obj2, str):
         if obj2 == 'x':
             obj1.set_velocity(v1_x, -v1_y)
@@ -176,3 +172,6 @@ if __name__ == '__main__':
     )
 
     plt.show()
+
+
+print("hello")
