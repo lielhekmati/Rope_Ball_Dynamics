@@ -117,13 +117,13 @@ class Ball:
         r1 = self.get_radius()
         r2 = ball2.get_radius()
         distance = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
-        #merged = self.is_merged(ball2)
+        merged = self.is_merged(ball2)
         if distance <= r1 + r2:
             x, y = self.find_reposition_point(ball2)
             ball2.set_position(x, y)
-            #if not merged:
+            if not merged:
             #    self.collision(ball2)
-            self.collision(ball2)
+                self.collision(ball2)
 
     def find_reposition_point(self, ball2):
         """ Finds a new position for another ball to resolve overlap after a collision."""
@@ -144,8 +144,8 @@ class Ball:
         """This function is not used in the code but can be used in cases where the balls are vibrating in the simulation.
         you can find its usage in check_collision_between_balls function disabled with #
         """
-        velocity_threshold = -1
-        distance_threshold = 1
+        velocity_threshold = 0.1
+        distance_threshold = 0.1
         v1_x, v1_y = self.get_velocity()
         v2_x, v2_y = ball.get_velocity()
         x1, y1 = self.get_position()
