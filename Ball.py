@@ -141,7 +141,9 @@ class Ball:
 
     def is_merged(self, ball):
         """ Determines if two balls have merged based on velocity and distance thresholds."""
-        """This function is not used in the code but can be used in cases where the balls are vibrating in the simulation"""
+        """This function is not used in the code but can be used in cases where the balls are vibrating in the simulation.
+        you can find its usage in check_collision_between_balls function disabled with #
+        """
         velocity_threshold = -1
         distance_threshold = 1
         v1_x, v1_y = self.get_velocity()
