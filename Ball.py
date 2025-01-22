@@ -8,19 +8,7 @@ def momentum_calc(v1, m1, v2, m2):
 
 
 class Ball:
-    """
-    Represents a ball in the simulation.
 
-    Attributes:
-        x (float): The x-coordinate of the ball's position.
-        y (float): The y-coordinate of the ball's position.
-        vel_x (float): The x-component of the ball's velocity.
-        vel_y (float): The y-component of the ball's velocity.
-        a_x (float): The x-component of the ball's acceleration.
-        a_y (float): The y-component of the ball's acceleration.
-        radius (float): The radius of the ball.
-        mass (float): The mass of the ball.
-    """
     def __init__(self, radius, location, mass, velocity):
         """
         Initializes a Ball instance.
@@ -44,27 +32,36 @@ class Ball:
         self.mass = mass
 
     def get_position(self):
+        """ Returns the position of the ball on x,y axes"""
         return self.x, self.y
 
     def get_velocity(self):
+        """ Returns the ball's velocity components in x,y axes"""
         return self.vel_x, self.vel_y
 
     def get_radius(self):
+        """ Return the radius of the ball"""
         return self.radius
 
     def get_mass(self):
+        """ Return the mass of the ball"""
         return self.mass
 
     def set_velocity(self, vel_x, vel_y):
+        """Gets velocity components in x,y axes
+           Sets the ball's velocity components in x,y axes"""
+
         self.vel_x = vel_x
         self.vel_y = vel_y
 
     def set_position(self, x, y):
+        """Gets location components in x,y axes
+           Sets the ball's location components in x,y axes"""
         self.x = x
         self.y = y
 
     def update_position(self, f_x=0, f_y=0, t=1/100):
-        """ Updates the ball's position based on applied forces and time step."""
+        """ Updates the ball's position based on given applied forces components in x,y axes and time step."""
         self.a_x = f_x / self.mass
         self.a_y = f_y / self.mass
 
@@ -75,7 +72,7 @@ class Ball:
         self.y += self.vel_y * t + 0.5 * self.a_y * t**2
 
     def collision(self, obj2):
-        """ Handles collisions with walls or another ball."""
+        """ Handles collisions with obj2 that can be a wall or another ball."""
         if isinstance(obj2, str):
             # Handle ball-to-ball collisions
             if obj2 == 'x':
@@ -144,6 +141,7 @@ class Ball:
 
     def is_merged(self, ball):
         """ Determines if two balls have merged based on velocity and distance thresholds."""
+        """This function is not used in the code but can be used in cases where the balls are vibrating in the simulation"""
         velocity_threshold = -1
         distance_threshold = 1
         v1_x, v1_y = self.get_velocity()

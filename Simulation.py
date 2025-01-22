@@ -3,20 +3,7 @@ import matplotlib.animation as animation
 
 
 class Simulation:
-    """
-    A class to simulate a physics-based environment with balls connected by ropes.
 
-    Attributes:
-        balls (list): A list of Ball objects in the simulation.
-        ropes (list): A list of Rope objects in the simulation.
-        bounds (tuple): The boundary limits as (upper, lower, left, right).
-        frame_count (int): The total number of frames for the animation.
-        frame_interval (float): Time interval between frames in seconds.
-        fig (matplotlib.figure.Figure): The figure for the simulation plot.
-        ax (matplotlib.axes._axes.Axes): The axes for the simulation plot.
-        ball_visualizations (list): Visual representations of the balls.
-        rope_visualizations (list): Visual representations of the ropes.
-    """
     def __init__(self, balls, ropes, bounds, frame_count, frame_interval):
         """
         Initializes the simulation environment.
@@ -105,9 +92,9 @@ class Simulation:
         """update the simulation at each frame"""
         ani = animation.FuncAnimation(
             self.fig,
-            self.update,  # No need for partial
+            self.update,
             frames=self.frame_count,
-            interval=self.frame_interval,  # Convert seconds to milliseconds
+            interval=self.frame_interval,
             blit=True
         )
         plt.show()

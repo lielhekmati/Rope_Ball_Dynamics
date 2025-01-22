@@ -2,15 +2,7 @@ import math
 
 
 class Rope:
-    """
-    Represents a rope in the simulation that connects an anchor point to a ball.
 
-    Attributes:
-        x (float): The x-coordinate of the anchor point.
-        y (float): The y-coordinate of the anchor point.
-        length (float): The length of the rope.
-        k (float): The spring constant of the rope.
-    """
     def __init__(self, anchor_point, length, k):
         """
         Initializes a Rope instance.
@@ -26,11 +18,8 @@ class Rope:
         self.k = k
 
     def get_position(self):
+        """ Returns the position of the rope """
         return self.x, self.y
-
-    def set_position(self,x_anchor, y_anchor):
-        self.x = x_anchor
-        self.y = y_anchor
 
     def get_force(self, location):
         """ Calculates the force exerted by the rope on an object at a given location."""

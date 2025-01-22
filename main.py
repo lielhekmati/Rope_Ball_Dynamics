@@ -11,10 +11,10 @@ if __name__ == '__main__':
     ball4 = Ball(1, (-2, 5), 5, (7, 0))
 
     # Creates Rope objects
-    rope1 = Rope([1, 10], 7, 50)
-    rope2 = Rope([1, 10], 7, 50)
-    rope3 = Rope([1, 10], 7, 50)
-    rope4 = Rope([-1, 10], 7, 50)
+    rope1 = Rope((1, 10), 7, 50)
+    rope2 = Rope((1, 10), 7, 50)
+    rope3 = Rope((1, 10), 7, 50)
+    rope4 = Rope((-1, 10), 7, 50)
 
     # Creates the simulation and run it
     sim = Simulation(
